@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
+import {JwtHelperService} from '@auth0/angular-jwt';
 
 
 const sessionStorageKey = 'access_token';
@@ -14,7 +15,8 @@ export class AuthService {
 
   constructor(
     private httpClient: HttpClient,
-    private router: Router
+    private router: Router,
+    private jwtHelperService: JwtHelperService
   ) {
   }
 
@@ -22,19 +24,21 @@ export class AuthService {
     const jsonObject = {username, password};
     const jsonString = JSON.stringify(jsonObject);
     const response = this.httpClient.post(loginAddress, jsonString);
-    response.subscribe((jwt: string) =>{
-      sessionStorage.setItem(sessionStorageKey, jwt);
-      this.router.navigateByUrl('/');
+    response.subscribe((jwt: string) => {
+        sessionStorage.setItem(sessionStorageKey, jwt);
+        this.router.navigateByUrl('/');
       }
     );
   }
 
 
-
-
-  hasToken(): boolean {
+  hasValidToken(): boolean {
     const accessToken = sessionStorage.getItem(sessionStorageKey);
-    return !!accessToken;
+    if (!(!!accessToken)) {
+      return false;
+    }
+    const isExpired = this.jwtHelperService.isTokenExpired(accessToken);
+    return !isExpired;
   }
 
 

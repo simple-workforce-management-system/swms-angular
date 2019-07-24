@@ -9,6 +9,7 @@ import {MaterialDesignModule} from './configuration/material-design/material-des
 import {AppComponent} from './app.component';
 import {LoginComponent} from './users/login/login.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
+import {AuthGuard} from './users/auth/auth.guard';
 
 
 @NgModule({
@@ -25,7 +26,7 @@ import {DashboardComponent} from './dashboard/dashboard.component';
     MaterialDesignModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {
