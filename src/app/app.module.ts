@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {HttpClientModule} from '@angular/common/http';
 
 import {AppRoutingModule} from './configuration/app-routing/app-routing.module';
 import {MaterialDesignModule} from './configuration/material-design/material-design.module';
@@ -17,10 +18,12 @@ import {DashboardComponent} from './dashboard/dashboard.component';
     DashboardComponent
   ],
   imports: [
-    MaterialDesignModule,
     BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+
+    MaterialDesignModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
