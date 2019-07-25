@@ -34,6 +34,11 @@ export class AuthService {
   }
 
 
+  logOut() {
+    sessionStorage.setItem(sessionStorageKey, '');
+  }
+
+
   hasValidToken(): boolean {
     const accessToken = sessionStorage.getItem(sessionStorageKey);
     if (!(!!accessToken)) {

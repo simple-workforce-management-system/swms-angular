@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 
 import {AppRoutingModule} from './configuration/app-routing/app-routing.module';
 import {MaterialDesignModule} from './configuration/material-design/material-design.module';
@@ -11,6 +11,7 @@ import {LoginComponent} from './users/login/login.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {AuthGuard} from './users/auth/auth.guard';
 import {PageNotFoundComponent} from './configuration/errors/page-not-found/page-not-found.component';
+import {AuthInterceptor} from './users/auth/auth-interceptor';
 
 
 @NgModule({
@@ -28,7 +29,10 @@ import {PageNotFoundComponent} from './configuration/errors/page-not-found/page-
     MaterialDesignModule,
     AppRoutingModule
   ],
-  providers: [AuthGuard],
+  providers: [
+    AuthGuard,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
