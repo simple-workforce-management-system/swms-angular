@@ -10,13 +10,15 @@ import {AppComponent} from './app.component';
 import {LoginComponent} from './users/login/login.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {AuthGuard} from './users/auth/auth.guard';
+import { PageNotFoundComponent } from './configuration/errors/page-not-found/page-not-found.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    DashboardComponent
+    DashboardComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
