@@ -12,6 +12,7 @@ import {DashboardComponent} from './dashboard/dashboard.component';
 import {AuthGuard} from './users/auth/auth.guard';
 import {PageNotFoundComponent} from './configuration/errors/page-not-found/page-not-found.component';
 import {AuthInterceptor} from './users/auth/auth-interceptor';
+import {AddJwtInterceptor} from './users/auth/add-jwt-interceptor';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import {AuthInterceptor} from './users/auth/auth-interceptor';
   ],
   providers: [
     AuthGuard,
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+    {provide: HTTP_INTERCEPTORS, useClass: AddJwtInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
 })
