@@ -10,7 +10,7 @@ import {AppComponent} from './app.component';
 import {LoginComponent} from './users/login/login.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {AuthGuard} from './users/auth/auth.guard';
-import { PageNotFoundComponent } from './configuration/errors/page-not-found/page-not-found.component';
+import {PageNotFoundComponent} from './configuration/errors/page-not-found/page-not-found.component';
 
 
 @NgModule({

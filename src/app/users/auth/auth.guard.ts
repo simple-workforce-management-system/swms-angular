@@ -4,7 +4,9 @@ import {Observable} from 'rxjs';
 import {AuthService} from './auth.service';
 
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class AuthGuard implements CanActivate {
 
 
@@ -17,8 +19,6 @@ export class AuthGuard implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):
     Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-    return true;
-/*
     const hasToken = this.authService.hasValidToken();
     if (hasToken) {
       return true;
@@ -26,7 +26,6 @@ export class AuthGuard implements CanActivate {
 
     this.router.navigate(['/users/login'], {queryParams: {returnUrl: state.url}});
     return false;
-*/
   }
 
 }

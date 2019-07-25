@@ -8,11 +8,11 @@ import {PageNotFoundComponent} from '../errors/page-not-found/page-not-found.com
 
 
 const routes: Routes = [
-  {path: 'test', component: DashboardComponent, canActivate: [AuthGuard]},
   {path: 'users/login', component: LoginComponent},
-  {path: '', component: DashboardComponent, pathMatch: 'full'},
+  {path: '', component: DashboardComponent, canActivate: [AuthGuard], pathMatch: 'full'},
   {path: '**', component: PageNotFoundComponent}
 ];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -12,13 +12,15 @@ const loginAddress = 'swmsapi.azurewebsites.net/users/login';
 })
 export class AuthService {
 
+  private jwtHelperService: JwtHelperService;
 
   constructor(
     private httpClient: HttpClient,
-    private router: Router,
-    private jwtHelperService: JwtHelperService
+    private router: Router
   ) {
+    this.jwtHelperService = new JwtHelperService();
   }
+
 
   logIn(username: string, password: string) {
     const jsonObject = {username, password};
